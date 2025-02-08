@@ -1,0 +1,89 @@
+# create-structure.yml
+
+name: Create Folder Structure
+
+on: 
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  create-structure:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Create folder structure
+      run: |
+        mkdir -p src/models
+        mkdir -p src/utils
+        mkdir -p src/data
+        mkdir -p src/training
+        mkdir -p tests
+        mkdir -p notebooks
+        mkdir -p config
+        mkdir -p data/raw
+        mkdir -p data/processed
+        mkdir -p docs
+        mkdir -p scripts
+
+        touch src/models/__init__.py
+        touch src/models/federated_transformer.py
+        touch src/models/gear_transformer.py
+        touch src/models/feedback_transformer.py
+        touch src/models/custom_attention.py
+
+        touch src/utils/__init__.py
+        touch src/utils/hypergraph.py
+        touch src/utils/serialization.py
+        touch src/utils/visualization.py
+
+        touch src/data/__init__.py
+        touch src/data/dataset.py
+        touch src/data/preprocess.py
+
+        touch src/training/__init__.py
+        touch src/training/trainer.py
+        touch src/training/metrics.py
+        touch src/training/optimizer.py
+        touch src/training/config.py
+
+        touch tests/__init__.py
+        touch tests/test_models.py
+        touch tests/test_utils.py
+        touch tests/test_training.py
+
+        touch notebooks/exploratory_analysis.ipynb
+        touch notebooks/training_demo.ipynb
+        touch notebooks/hypergraph_visualization.ipynb
+
+        touch config/model_config.json
+        touch config/training_config.json
+        touch config/hypergraph_config.json
+
+        touch data/README.md
+        touch data/example_data.csv
+
+        touch docs/architecture.md
+        touch docs/hypergraph_representation.md
+        touch docs/training_pipeline.md
+        touch docs/API_REFERENCE.md
+
+        touch scripts/train.py
+        touch scripts/evaluate.py
+        touch scripts/infer.py
+        touch scripts/preprocess_data.py
+
+        touch environment.yml
+        touch requirements.txt
+        touch setup.py
+        touch README.md
+        touch LICENSE
+        touch .gitignore
+
+    - name: Verify structure (Optional)
+      run: |
+        tree -a
